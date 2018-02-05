@@ -1,6 +1,6 @@
 # jsincss-compare-attribute
 
-An attribute comparison plugin for jsincss
+An attribute comparison plugin for [jsincss](https://github.com/tomhodgins/jsincss)
 
 ## About
 
@@ -83,7 +83,7 @@ This example will use the `jsincss` plugin to load a JS-in-CSS stylesheet making
 It's also possible to write your stylesheets as a separate JavaScript module like this, where you import any helper plugins at the top of the stylesheet:
 
 ```js
-import compare from  'http://unpkg.com/jsincss-compare-attribute/index.js'
+import compare from 'http://unpkg.com/jsincss-compare-attribute/index.js'
 
 export default () => {
 
