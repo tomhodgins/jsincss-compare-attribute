@@ -1,6 +1,6 @@
 {
   "name": "jsincss-compare-attribute",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An attribute comparison plugin for jsincss",
   "main": "index.js",
   "scripts": {
