@@ -1,26 +1,28 @@
 export default (selector, attribute, test, stylesheet) => {
 
-  let styles = ''
-  let count = 0
+  return Array.from(document.querySelectorAll(selector))
 
-  document.querySelectorAll(selector).forEach(tag => {
+    .reduce((styles, tag, count) => {
 
-    const attr = (selector+attribute+test).replace(/\W/g, '')
+      const attr = (selector+attribute+test).replace(/\W/g, '')
 
-    if (test(attribute === 'value' ? tag.value : tag.getAttribute(attribute))) {
+      if (test(attribute === 'value' ? tag.value : tag.getAttribute(attribute))) {
 
-      styles += stylesheet.replace(/:self|\$this/g, `[data-compare-${attr}="${count}"]`)
-      tag.setAttribute(`data-compare-${attr}`, count)
-      count++
+        styles += stylesheet.replace(
+          /:self|\$this/g,
+          `[data-compare-${attr}="${count}"]`
+        )
+        tag.setAttribute(`data-compare-${attr}`, count)
+        count++
 
-    } else {
+      } else {
 
-      tag.setAttribute(`data-compare-${attr}`, '')
+        tag.setAttribute(`data-compare-${attr}`, '')
 
-    }
+      }
 
-  })
+      return styles
 
-  return styles
+    }, '')
 
 }
