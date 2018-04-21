@@ -1,4 +1,4 @@
-module.exports = (selector, attribute, test, stylesheet) => {
+export default (selector, attribute, test, stylesheet) => {
 
   return Array.from(document.querySelectorAll(selector))
 

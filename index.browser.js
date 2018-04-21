@@ -1,4 +1,4 @@
-module.exports = (selector, attribute, test, stylesheet) => {
+function compare(selector, attribute, test, stylesheet) {
 
   return Array.from(document.querySelectorAll(selector))
 
