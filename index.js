@@ -13,8 +13,7 @@ module.exports = (selector, attribute, test, stylesheet) => {
           /:self|\$this/g,
           `[data-compare-${attr}="${count}"]`
         )
-        count++
-
+  
       } else {
 
         tag.setAttribute(`data-compare-${attr}`, '')
