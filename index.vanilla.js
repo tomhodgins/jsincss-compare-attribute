@@ -10,7 +10,7 @@ export default (selector, attribute, test, stylesheet) => {
 
         tag.setAttribute(`data-compare-${attr}`, count)
         styles += stylesheet.replace(
-          /:self|\$this/g,
+          /:self|\$this|\[--self\]/g,
           `[data-compare-${attr}="${count}"]`
         )
   
