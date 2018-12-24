@@ -1,27 +1,27 @@
 export default (selector, attribute, test, stylesheet) => {
-
-  return Array.from(document.querySelectorAll(selector))
-
-    .reduce((styles, tag, count) => {
-
-      const attr = (selector + attribute + test).replace(/\W/g, '')
-
-      if (test(attribute === 'value' ? tag.value : tag.getAttribute(attribute))) {
-
-        tag.setAttribute(`data-compare-${attr}`, count)
-        styles += stylesheet.replace(
-          /:self|\$this|\[--self\]/g,
-          `[data-compare-${attr}="${count}"]`
+  const attr = (selector + attribute + test).replace(/\W/g, '')
+  const result = Array.from(document.querySelectorAll(selector))
+    .reduce((output, tag, count) => {
+      if (
+        test(
+          attribute === 'value'
+          ? tag.value
+          : tag.getAttribute(attribute)
         )
-  
+      ) {
+        output.add.push({tag: tag, count: count})
+        output.styles.push(
+          stylesheet.replace(
+            /:self|\$this|\[--self\]/g,
+            `[data-compare-${attr}="${count}"]`
+          )
+        )
       } else {
-
-        tag.setAttribute(`data-compare-${attr}`, '')
-
+        output.remove.push(tag)
       }
-
-      return styles
-
-    }, '')
-
+      return output
+    }, {add: [], remove: [], styles: []})
+  result.add.forEach(tag => tag.tag.setAttribute(`data-compare-${attr}`, tag.count))
+  result.remove.forEach(tag => tag.setAttribute(`data-compare-${attr}`, ''))
+  return result.styles.join('\n')
 }
